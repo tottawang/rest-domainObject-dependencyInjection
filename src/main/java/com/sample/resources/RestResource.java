@@ -17,7 +17,11 @@ public class RestResource {
   @GET
   @Path("domain-obj-di")
   public String getDomainObjDI() {
-    Account account = new Account();
-    return account.doSomething();
+    long start = System.currentTimeMillis();
+    for (int i = 0; i < 10000; i++) {
+      new Account();
+    }
+    long end = System.currentTimeMillis();
+    return "Time taken to build 10k Account object " + (end - start) + " milliseconds";
   }
 }
